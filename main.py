@@ -6,7 +6,7 @@ import tkinter.font as tkFont
 screen = Tk()#Создали объект экрана
 screen.geometry("1920x1080")#Метод для установки размеров экрана
 
-strikethrough_font = tkFont.Font(family="Obelix Pro", size=40, overstrike=1)
+strikethrough_font = tkFont.Font(family="Arial", size=40, overstrike=1)
 #картинки
 
 #Шаг 1: сохраняю путь к файлу в переменной (файл должен быть "PNG")
@@ -40,16 +40,22 @@ def click():
     procherk = Label(screen, text=procherk_1, font=("Arial", 50))
     procherk.place(x = 960, y = 700, width = 500, height = 100)
 
-    def a():
-        a_button.config(state="disable", background="red", font=strikethrough_font)
+    def t():
+        t_button.config(state="disable", background="red", font=strikethrough_font)
 
-    a_button = Button(screen, text="a", font=("Obelix Pro", 40), command=a, background="green")
-    a_button.place(x=500, y=800,  width=75, height = 75)
+    t_button = Button(screen, text="t", font=("Arial", 40), command=t, background="green")
+    t_button.place(x=500, y=800,  width=75, height = 75)
 
+    def i():
+        i_button.config(state="disable", background="red", font=strikethrough_font)
+
+    i_button = Button(screen, text="i", font=("Arial", 40), command=i, background="green")
+    i_button.place(x=600, y=800, width=75, height = 75)
 #создфю виджет "button". Параметр command отвечает за действие после клика
 play_button = Button(screen, image=photo_play, command=click)
 #разместили виджет на экране, указали координаты и размеры виджета
 play_button.place(x = 315,y = 450)
+
 
 music_button = Button()
 
