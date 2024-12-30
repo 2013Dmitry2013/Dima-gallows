@@ -40,23 +40,35 @@ def click():
     procherk = Label(screen, text=procherk_1, font=("Arial", 50))
     procherk.place(x = 960, y = 700, width = 500, height = 100)
 
-    def t():
-        t_button.config(state="disable", background="red", font=strikethrough_font)
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    button_width = 75
+    button_height = 75
+    button_x = -75
+    button_y = 750
+    otstup = 100
+    index = 0
+    otstup_y = 0
+    bukva_button = Button()
 
-    t_button = Button(screen, text="t", font=("Arial", 40), command=t, background="green")
-    t_button.place(x=500, y=800,  width=75, height = 75)
+    def ne_rabot():
+        bukva_button.config(state="disable", background="red", font=strikethrough_font)
 
-    def i():
-        i_button.config(state="disable", background="red", font=strikethrough_font)
+    for bukva in alphabet:
+        if otstup_y != 8:
+            button_x = button_x + otstup
+            otstup_y = otstup_y + 1
+            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=ne_rabot)
+            bukva_button.place(x=button_x, y=button_y,  width=button_width, height =button_height)
+        else:
+            button_x = 25
+            button_y = button_y + otstup
+            otstup_y = 0
+            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=ne_rabot)
+            bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)
 
-    i_button = Button(screen, text="i", font=("Arial", 40), command=i, background="green")
-    i_button.place(x=600, y=800, width=75, height = 75)
 #создфю виджет "button". Параметр command отвечает за действие после клика
 play_button = Button(screen, image=photo_play, command=click)
 #разместили виджет на экране, указали координаты и размеры виджета
 play_button.place(x = 315,y = 450)
-
-
-music_button = Button()
 
 screen.mainloop()#Метод окна и взаимодействия с пользователей
