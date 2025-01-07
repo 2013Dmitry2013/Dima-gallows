@@ -46,24 +46,24 @@ def click():
     button_x = -75
     button_y = 750
     otstup = 100
-    index = 0
     otstup_y = 0
     bukva_button = Button()
 
-    def ne_rabot():
-        bukva_button.config(state="disable", background="red", font=strikethrough_font)
+    def process_letter(bukva, button):#bukva сохраняет символ буквы, а параметр button сохраняет ссылку на текущую кнопку
+        button.config(state="disable", background="gray")
+
 
     for bukva in alphabet:
         if otstup_y != 8:
             button_x = button_x + otstup
             otstup_y = otstup_y + 1
-            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=ne_rabot)
+            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=lambda b=bukva, btn=bukva_button: process_letter(b, btn))
             bukva_button.place(x=button_x, y=button_y,  width=button_width, height =button_height)
         else:
             button_x = 25
             button_y = button_y + otstup
             otstup_y = 0
-            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=ne_rabot)
+            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=lambda b=bukva, btn=bukva_button: process_letter(b, btn))
             bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)
 
 #создфю виджет "button". Параметр command отвечает за действие после клика
