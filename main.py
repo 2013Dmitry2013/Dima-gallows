@@ -47,24 +47,32 @@ def click():
     button_y = 750
     otstup = 100
     otstup_y = 0
-    bukva_button = Button()
 
-    def process_letter(bukva, button):#bukva сохраняет символ буквы, а параметр button сохраняет ссылку на текущую кнопку
-        button.config(state="disable", background="gray")
-
+    def process_letter(bukva):
+        for widget in screen.winfo_children():  # Проходим по всем виджетам на экране
+            if isinstance(widget, Button) and widget['text'] == bukva:
+                widget.config(state="disable", background="gray")
+                break  # Останавливаем цикл после обработки нужной кнопки
 
     for bukva in alphabet:
         if otstup_y != 8:
-            button_x = button_x + otstup
-            otstup_y = otstup_y + 1
-            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=lambda b=bukva, btn=bukva_button: process_letter(b, btn))
-            bukva_button.place(x=button_x, y=button_y,  width=button_width, height =button_height)
+            button_x += otstup
+            otstup_y += 1
         else:
             button_x = 25
-            button_y = button_y + otstup
+            button_y += otstup
             otstup_y = 0
-            bukva_button = Button(screen, text=bukva, font=("Arial", 40), background="green", command=lambda b=bukva, btn=bukva_button: process_letter(b, btn))
-            bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)
+
+        # Создаём кнопку
+        bukva_button = Button(
+            screen,
+            text=bukva,
+            font=("Arial", 40),
+            background="green",
+            command=lambda b=bukva: process_letter(b)
+        )
+        bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)
+
 
 #создфю виджет "button". Параметр command отвечает за действие после клика
 play_button = Button(screen, image=photo_play, command=click)
