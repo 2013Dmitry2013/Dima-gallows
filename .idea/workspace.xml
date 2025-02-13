@@ -5,6 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c26301-6e1f-4195-b0a5-e319dc94cb75" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/Polnaya_V.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/animals.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/hon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/palka_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/palka_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/palka_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/pol.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Графическое прил/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Графическое прил/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Графическое прил/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Графическое прил/main.py" afterDir="false" />
     </list>
@@ -29,9 +36,15 @@
   &quot;keyToString&quot;: {
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Программирование/Графическое прил/Picture&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Программирование\Графическое прил\Picture" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
