@@ -4,6 +4,9 @@
 from tkinter import *#Импортировали - скачали модуль для работы с интерефейсом
 import random
 import tkinter.font as tkFont
+import pygame #импортировали библеотеку для разработки игр
+pygame.init()#инициализировали pygame
+pygame.mixer.init()#инициализировали mixer(микшер)
 
 index = 0
 
@@ -17,8 +20,27 @@ strikethrough_font = tkFont.Font(family="Arial", size=40, overstrike=1)
 photo_hon = PhotoImage(file = "Picture/MainPicture.png")
 photo_play = PhotoImage(file = "Picture/play_button.png")
 photo_hon2 = PhotoImage(file="Picture/animals.png")
-palka1 = PhotoImage(file="Picture/palka_7.png")
-palka2 = PhotoImage(file="Picture/palka_1.png")
+You_Lose = PhotoImage(file="Picture/YouLose.png")
+
+#Висилица
+palka1 = PhotoImage(file="Picture/palka_1.png")
+palka2 = PhotoImage(file="Picture/palka_2.png")
+palka3 = PhotoImage(file="Picture/palka_3.png")
+palka4 = PhotoImage(file="Picture/palka_4.png")
+palka5 = PhotoImage(file="Picture/palka_5.png")
+palka6 = PhotoImage(file="Picture/palka_6.png")
+palka7 = PhotoImage(file="Picture/palka_7.png")
+
+#Музыка
+oshibka = pygame.mixer.Sound("Sound/Oshibka.mp3")
+oshibka.set_volume(1)
+
+ugadal = pygame.mixer.Sound("Sound/Ugadal.mp3")
+ugadal.set_volume(1)
+
+
+pictures = [palka1, palka2, palka3, palka4, palka5, palka6, palka7]#сщхранили все картинки в список для автоматического переключения
+actual_picture = pictures[0]#утановили изночальное изображение для висилицы
 
 #Шаг 2: создаю виджет - "label" указываю родителя, указываю изображение прикрепленное к виджету
 menu_label = Label(screen, image=photo_hon)
@@ -41,22 +63,28 @@ print(random_animal)
 
 def click():
     global jizni
+    global oshibka
+
     play_button.place_forget()  # place_forget скрывает виджет
     menu_label.place_forget()
 
+    #сделали frame для сохранения виджетов
+    Game_process = Frame(screen)
+    Game_process.place(width=1920, height=1080, x=0, y=0)
 
-    forestground = Label(screen, image=photo_hon2)
+    #label сохраняется на Game_process
+    forestground = Label(Game_process, image=photo_hon2)
     forestground.place(x = 0, y = 0)
 
-    palka1_ = Label(screen, image=palka1)
+    palka1_ = Label(Game_process, image=actual_picture)
     palka1_.place(x = 730, y = 370)
 
 
-    kategory_label = Label(screen, text="Угадай это слово")
+    kategory_label = Label(Game_process, text="Угадай это слово")
     kategory_label.place(x = 960,y = 50)
 
 
-    procherk = Label(screen, text=procherk_1, font=("Arial", 50))
+    procherk = Label(Game_process, text=procherk_1, font=("Arial", 50))
     procherk.place(x = 1250, y = 900, width = 500, height = 100)
 
 
@@ -71,28 +99,32 @@ def click():
     def process_letter(bukva):
         global procherk_1
         global jizni
+        global oshibka
         a = 0
-        for widget in screen.winfo_children():  # Проходим по всем виджетам на экране
+        for widget in Game_process.winfo_children():  # Проходим по всем виджетам на экране
             if isinstance(widget, Button) and widget['text'] == bukva:
                 widget.config(state="disable", background="gray")
-                if jizni == 6:
+                if jizni == 5:
                     print("Ты проиграл")
+                    #Скрываем frame (и все виджеты на нем)
+                    Game_process.place_forget()
+                    You_Lose_ = Label(screen, image=You_Lose)
+                    You_Lose_.place(width=1920, height=1080, x=0, y=0)
                 if jizni < 6:
                     if bukva in random_animal:
                         for i in random_animal:
                             a = a+1
                             if i == bukva:
+                                ugadal.play(0)
                                 procherk_1 = procherk_1[:a*2-2] + bukva + " " + procherk_1[a*2:]
                                 procherk.config(text=procherk_1)
                                 print(procherk_1)
                     else:
                         jizni = jizni + 1
+                        oshibka.play(0)#проиграли звук ошибки 1 раз
                         print(jizni)
-
-
-
-
-
+                        actual_picture = pictures[jizni]#Устанавливаем картинку в зависимости от жизни
+                        palka1_.config(image=actual_picture)#Проводим конфигурацию (меняем) картинки
                 break  # Останавливаем цикл после обработки нужной кнопки
 
     for bukva in alphabet:#поочереди обращаемся к каждой букве алфавита
@@ -106,7 +138,7 @@ def click():
 
         # Создаём кнопку
         bukva_button = Button(
-            screen,
+            Game_process,
             text=bukva,
             font=("Arial", 40),
             background="green",
