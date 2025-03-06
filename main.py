@@ -21,6 +21,7 @@ photo_hon = PhotoImage(file = "Picture/MainPicture.png")
 photo_play = PhotoImage(file = "Picture/play_button.png")
 photo_hon2 = PhotoImage(file="Picture/animals.png")
 You_Lose = PhotoImage(file="Picture/YouLose.png")
+win = PhotoImage(file="Picture/WIN.png")
 
 #Висилица
 palka1 = PhotoImage(file="Picture/palka_1.png")
@@ -37,6 +38,9 @@ oshibka.set_volume(1)
 
 ugadal = pygame.mixer.Sound("Sound/Ugadal.mp3")
 ugadal.set_volume(1)
+
+lose = pygame.mixer.Sound("Sound/You_lose_sound.mp3")
+lose.set_volume(1)
 
 
 pictures = [palka1, palka2, palka3, palka4, palka5, palka6, palka7]#сщхранили все картинки в список для автоматического переключения
@@ -105,11 +109,17 @@ def click():
             if isinstance(widget, Button) and widget['text'] == bukva:
                 widget.config(state="disable", background="gray")
                 if jizni == 5:
+                    lose.play(0)
                     print("Ты проиграл")
                     #Скрываем frame (и все виджеты на нем)
                     Game_process.place_forget()
                     You_Lose_ = Label(screen, image=You_Lose)
                     You_Lose_.place(width=1920, height=1080, x=0, y=0)
+                if random_animal == procherk_1.replace(" ", ""):
+                    print("Ты выйграл")
+                    Game_process.place_forget()
+                    win1 = Label(screen, image=win)
+                    win1.place(width=1920, height=1080, x=0, y=0)
                 if jizni < 6:
                     if bukva in random_animal:
                         for i in random_animal:
@@ -144,7 +154,7 @@ def click():
             background="green",
             command=lambda b=bukva: process_letter(b)
         )
-        bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)#размещение букв на экране
+        bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)  # размещение букв на экране
 
 
 #создфю виджет "button". Параметр command отвечает за действие после клика
