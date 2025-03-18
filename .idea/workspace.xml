@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c26301-6e1f-4195-b0a5-e319dc94cb75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/WIN.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/Exit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Графическое прил/Picture/Music.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Графическое прил/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Графическое прил/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Графическое прил/Picture/play_button.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Графическое прил/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Графическое прил/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

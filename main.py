@@ -22,6 +22,8 @@ photo_play = PhotoImage(file = "Picture/play_button.png")
 photo_hon2 = PhotoImage(file="Picture/animals.png")
 You_Lose = PhotoImage(file="Picture/YouLose.png")
 win = PhotoImage(file="Picture/WIN.png")
+photo_exit = PhotoImage(file="Picture/Exit.png")
+photo_music = PhotoImage(file="Picture/Music.png")
 
 #Висилица
 palka1 = PhotoImage(file="Picture/palka_1.png")
@@ -41,6 +43,9 @@ ugadal.set_volume(1)
 
 lose = pygame.mixer.Sound("Sound/You_lose_sound.mp3")
 lose.set_volume(1)
+
+Phon_sound = pygame.mixer.Sound("Sound/Phon_music.mp3")
+Phon_sound.set_volume(1)
 
 
 pictures = [palka1, palka2, palka3, palka4, palka5, palka6, palka7]#сщхранили все картинки в список для автоматического переключения
@@ -115,11 +120,6 @@ def click():
                     Game_process.place_forget()
                     You_Lose_ = Label(screen, image=You_Lose)
                     You_Lose_.place(width=1920, height=1080, x=0, y=0)
-                if random_animal == procherk_1.replace(" ", ""):
-                    print("Ты выйграл")
-                    Game_process.place_forget()
-                    win1 = Label(screen, image=win)
-                    win1.place(width=1920, height=1080, x=0, y=0)
                 if jizni < 6:
                     if bukva in random_animal:
                         for i in random_animal:
@@ -135,6 +135,11 @@ def click():
                         print(jizni)
                         actual_picture = pictures[jizni]#Устанавливаем картинку в зависимости от жизни
                         palka1_.config(image=actual_picture)#Проводим конфигурацию (меняем) картинки
+                if random_animal == procherk_1.replace(" ", ""):
+                    print("Ты выйграл")
+                    Game_process.place_forget()
+                    win1 = Label(screen, image=win)
+                    win1.place(width=1920, height=1080, x=0, y=0)
                 break  # Останавливаем цикл после обработки нужной кнопки
 
     for bukva in alphabet:#поочереди обращаемся к каждой букве алфавита
@@ -161,5 +166,13 @@ def click():
 play_button = Button(screen, image=photo_play, command=click)
 #разместили виджет на экране, указали координаты и размеры виджета
 play_button.place(x = 315,y = 450)
+
+Exit_button = Button(screen, image=photo_exit)
+
+Exit_button.place(x = 1700,y = 10)
+
+Music_botton = Button(screen, image=photo_music)
+
+Music_botton.place(x = 10, y = 840)
 
 screen.mainloop()#Метод окна и взаимодействия с пользователей
