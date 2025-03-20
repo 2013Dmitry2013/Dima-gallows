@@ -10,6 +10,17 @@ pygame.mixer.init()#инициализировали mixer(микшер)
 
 index = 0
 
+def read_animals_file():
+    with open('file/animals.txt', "r") as file:
+
+        lines = file.readline()
+
+        for i in lines:
+            print(i)
+
+read_animals_file()
+
+
 screen = Tk()#Создали объект экрана
 screen.geometry("1920x1080")#Метод для установки размеров экрана
 
