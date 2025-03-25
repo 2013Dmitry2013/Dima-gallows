@@ -9,17 +9,22 @@ pygame.init()#инициализировали pygame
 pygame.mixer.init()#инициализировали mixer(микшер)
 
 index = 0
+animals = []#переменная со списком
 
-def read_animals_file():
-    with open('file/animals.txt', "r") as file:
+def read_animals_file(a):
+    global animals#сделал animals глобальной
 
-        lines = file.readline()
+    with open('file/animals.txt', a) as file:#открыл файл
+
+        lines = file.readlines()#достал информацию
 
         for i in lines:
-            print(i)
 
-read_animals_file()
+            animals.append(i)#поочереди добавил информацию из файла в список
 
+read_animals_file("r")#включил функцию
+
+print(animals)
 
 screen = Tk()#Создали объект экрана
 screen.geometry("1920x1080")#Метод для установки размеров экрана
@@ -58,6 +63,7 @@ lose.set_volume(1)
 Phon_sound = pygame.mixer.Sound("Sound/Phon_music.mp3")
 Phon_sound.set_volume(1)
 
+Phon_sound.play(-1)
 
 pictures = [palka1, palka2, palka3, palka4, palka5, palka6, palka7]#сщхранили все картинки в список для автоматического переключения
 actual_picture = pictures[0]#утановили изночальное изображение для висилицы
@@ -172,6 +178,22 @@ def click():
         )
         bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)  # размещение букв на экране
 
+check_sound = True
+def music_control():
+
+    global check_sound
+
+    if check_sound == True:
+
+        pygame.mixer.music.pause()
+        check_sound = False
+
+    elif check_sound == False:
+
+        pygame.mixer.music.play()
+        check_sound = True
+
+
 
 #создфю виджет "button". Параметр command отвечает за действие после клика
 play_button = Button(screen, image=photo_play, command=click)
@@ -182,7 +204,7 @@ Exit_button = Button(screen, image=photo_exit)
 
 Exit_button.place(x = 1700,y = 10)
 
-Music_botton = Button(screen, image=photo_music)
+Music_botton = Button(screen, image=photo_music, command=music_control)
 
 Music_botton.place(x = 10, y = 840)
 

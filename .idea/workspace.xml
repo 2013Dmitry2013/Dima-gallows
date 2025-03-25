@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c26301-6e1f-4195-b0a5-e319dc94cb75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Графическое прил/file/animals.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Графическое прил/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Графическое прил/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Графическое прил/info.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Графическое прил/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Графическое прил/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +36,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Программирование\Графическое прил\Picture" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Программирование\Графическое прил\file" />
     </key>
   </component>
   <component name="SharedIndexes">
