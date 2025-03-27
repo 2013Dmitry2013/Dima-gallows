@@ -60,10 +60,8 @@ ugadal.set_volume(1)
 lose = pygame.mixer.Sound("Sound/You_lose_sound.mp3")
 lose.set_volume(1)
 
-Phon_sound = pygame.mixer.Sound("Sound/Phon_music.mp3")
-Phon_sound.set_volume(1)
-
-Phon_sound.play(-1)
+pygame.mixer.music.load("Sound/Phon_music.mp3") #загрузил музыку
+pygame.mixer.music.play(-1)#Музыка играет бесконечно
 
 pictures = [palka1, palka2, palka3, palka4, palka5, palka6, palka7]#сщхранили все картинки в список для автоматического переключения
 actual_picture = pictures[0]#утановили изночальное изображение для висилицы
@@ -87,7 +85,10 @@ jizni = 0
 
 print(random_animal)
 
+check_sound = True #переменная для отстановки/произведения звука
+
 def click():
+    global check_sound
     global jizni
     global oshibka
 
@@ -131,24 +132,35 @@ def click():
             if isinstance(widget, Button) and widget['text'] == bukva:
                 widget.config(state="disable", background="gray")
                 if jizni == 5:
-                    lose.play(0)
+
+                    if check_sound:
+                        lose.play(0)
+
                     print("Ты проиграл")
                     #Скрываем frame (и все виджеты на нем)
                     Game_process.place_forget()
                     You_Lose_ = Label(screen, image=You_Lose)
                     You_Lose_.place(width=1920, height=1080, x=0, y=0)
+                    return_button = Button(screen, command = click)
+                    return_button.place(x=1700, y=10)
                 if jizni < 6:
                     if bukva in random_animal:
                         for i in random_animal:
                             a = a+1
                             if i == bukva:
-                                ugadal.play(0)
+
+                                if check_sound:
+                                    ugadal.play(0)
+
                                 procherk_1 = procherk_1[:a*2-2] + bukva + " " + procherk_1[a*2:]
                                 procherk.config(text=procherk_1)
                                 print(procherk_1)
                     else:
                         jizni = jizni + 1
-                        oshibka.play(0)#проиграли звук ошибки 1 раз
+
+                        if check_sound:
+                            oshibka.play(0)#проиграли звук ошибки 1 раз
+
                         print(jizni)
                         actual_picture = pictures[jizni]#Устанавливаем картинку в зависимости от жизни
                         palka1_.config(image=actual_picture)#Проводим конфигурацию (меняем) картинки
@@ -177,23 +189,19 @@ def click():
             command=lambda b=bukva: process_letter(b)
         )
         bukva_button.place(x=button_x, y=button_y, width=button_width, height=button_height)  # размещение букв на экране
-
-check_sound = True
 def music_control():
 
     global check_sound
 
-    if check_sound == True:
+    if check_sound:
 
-        pygame.mixer.music.pause()
+        pygame.mixer.music.pause()#останавливается
         check_sound = False
 
-    elif check_sound == False:
+    elif not check_sound:
 
-        pygame.mixer.music.play()
+        pygame.mixer.music.unpause()#Играет
         check_sound = True
-
-
 
 #создфю виджет "button". Параметр command отвечает за действие после клика
 play_button = Button(screen, image=photo_play, command=click)
