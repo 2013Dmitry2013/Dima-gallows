@@ -71,26 +71,29 @@ menu_label = Label(screen, image=photo_hon)
 #Шаг 3: спомощью метода "place" размещаю "label" на зкране
 menu_label.place(x = 0, y = 0)
 
-# Создаем список с 10 животными
-animals = ["lion", "tiger", "elephant", "giraffe", "zebra", "kangaroo", "panda", "leopard", "wolf", "cat"]
-# Случайный индекс
-random_index = random.randint(0, len(animals) - 1)
+check_sound = True #переменная для отстановки/произведения звука
 
-# Извлекаем элемент по случайному индексу
-random_animal = animals[random_index]
-bukvi = len(random_animal)
-procherk_1 = "_ " * bukvi#скопировали текст нужное кол-во раз
-print(procherk_1)
 jizni = 0
 
-print(random_animal)
-
-check_sound = True #переменная для отстановки/произведения звука
+procherk_1 = 0
 
 def click():
     global check_sound
-    global jizni
     global oshibka
+    global jizni
+    global procherk_1
+
+    # Случайный индекс
+    random_index = random.randint(0, len(animals) - 1)
+
+    # Извлекаем элемент по случайному индексу
+    random_animal = animals[random_index]
+    bukvi = len(random_animal)
+    procherk_1 = "_ " * bukvi  # скопировали текст нужное кол-во раз
+    print(procherk_1)
+    jizni = 0
+
+    print(random_animal)
 
     play_button.place_forget()  # place_forget скрывает виджет
     menu_label.place_forget()
@@ -169,6 +172,8 @@ def click():
                     Game_process.place_forget()
                     win1 = Label(screen, image=win)
                     win1.place(width=1920, height=1080, x=0, y=0)
+                    return_button = Button(screen, command=click)
+                    return_button.place(x=1700, y=10)
                 break  # Останавливаем цикл после обработки нужной кнопки
 
     for bukva in alphabet:#поочереди обращаемся к каждой букве алфавита
